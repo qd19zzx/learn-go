@@ -61,7 +61,7 @@ func Query() (*sql.Rows, error){
 	mSql := "select * from user"
 	rows, err := MysqlDb.Query(mSql)
 
-	if err != nil && err != sql.ErrNoRows{
+	if err != nil && !e.Is(err,sql.ErrNoRows){
         return nil, e.Wrap(err, "select * from user error")
 	}
 
